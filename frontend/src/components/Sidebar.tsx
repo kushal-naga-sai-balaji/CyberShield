@@ -8,6 +8,7 @@ import {
   ShieldCheck, 
   FileText, 
   Terminal,
+  Presentation,
   Cpu
 } from "lucide-react";
 
@@ -20,6 +21,7 @@ interface SidebarProps {
 export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, blockedCount }) => {
   const menuItems = [
     { id: "dashboard", label: "SOC Live Dashboard", icon: LayoutDashboard },
+    { id: "presentation", label: "Presentation Slides", icon: Presentation, badge: "10 Slides" },
     { id: "threat-map", label: "GPS Threat Map", icon: Globe, badge: "Live GPS" },
     { id: "attack-path", label: "Attack Path Graph", icon: GitFork, badge: "AI Visualizer" },
     { id: "honeypots", label: "Adaptive Honeypots", icon: Sparkles },

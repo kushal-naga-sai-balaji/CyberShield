@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Navbar } from "./components/Navbar";
 import { Sidebar } from "./components/Sidebar";
 import { Dashboard } from "./pages/Dashboard";
+import { PresentationDeck } from "./pages/PresentationDeck";
 import { GpsThreatMap } from "./pages/GpsThreatMap";
 import { AttackPathVisualizer } from "./pages/AttackPathVisualizer";
 import { HoneypotManager } from "./pages/HoneypotManager";
@@ -96,6 +97,8 @@ export function App() {
               onNavigateTab={setActiveTab}
             />
           )}
+
+          {activeTab === "presentation" && <PresentationDeck />}
 
           {activeTab === "threat-map" && <GpsThreatMap />}
 
