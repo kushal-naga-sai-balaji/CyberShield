@@ -4,12 +4,10 @@ import {
   ChevronLeft, 
   ChevronRight, 
   Download, 
-  Sparkles, 
   Maximize2, 
-  Layers, 
   Lightbulb,
+  ShieldCheck,
   CheckCircle,
-  ShieldAlert,
   ArrowRight
 } from "lucide-react";
 
@@ -20,7 +18,7 @@ interface SlideContent {
   subtitle: string;
   bgImage: string;
   learningTakeaway: string;
-  points: { title: string; desc: string; icon?: string }[];
+  points: { title: string; desc: string }[];
 }
 
 export const PresentationDeck: React.FC = () => {
@@ -38,7 +36,7 @@ export const PresentationDeck: React.FC = () => {
       points: [
         { title: "Core Concept", desc: "An autonomous platform that predicts attacker moves, generates realistic decoy environments, and neutralizes intrusions before data theft occurs." },
         { title: "The 5-Stage Paradigm", desc: "PREDICT → DECEIVE → OBSERVE → LEARN → DEFEND" },
-        { title: "Mission", desc: "Shifting cybersecurity from reactive damage control to proactive intelligence and attacker entrapment." }
+        { title: "Design Philosophy", desc: "Move beyond reactive 'detect-and-block' firewalls by combining AI threat prediction, adaptive honeypots, and automated defense." }
       ]
     },
     {
@@ -50,7 +48,7 @@ export const PresentationDeck: React.FC = () => {
       learningTakeaway: "Defenders must succeed 100% of the time, while attackers only need to find ONE flaw. CyberShield flips this asymmetry.",
       points: [
         { title: "The Attacker Asymmetry", desc: "Traditional firewalls wait for an attack to strike. Attackers get infinite free reconnaissance attempts to find a single exploit." },
-        { title: "Cloaked Infiltration", desc: "Adversaries hide behind VPNs, Tor exit nodes, and proxies. Blocking an IP just causes them to switch to another IP in seconds." },
+        { title: "Cloaked Infiltration", desc: "Adversaries hide behind VPNs, Tor exit nodes, and proxies. Blocking an IP causes them to switch to another IP in seconds." },
         { title: "Zero-Day Blindspots", desc: "Signature-based tools miss unknown exploits. Hackers dwell inside corporate networks for an average of 200+ days undetected." }
       ]
     },
@@ -63,9 +61,8 @@ export const PresentationDeck: React.FC = () => {
       learningTakeaway: "By feeding fake data instead of errors, you keep hackers busy attacking illusions while you collect their forensic fingerprints.",
       points: [
         { title: "1. Predict", desc: "Machine learning analyzes incoming traffic, headers, and commands to forecast the attacker's next 3 likely moves." },
-        { title: "2. Deceive", desc: "Instead of a 403 Forbidden error, the system feeds attackers realistic fake customer databases, dummy APIs, and simulated logins." },
-        { title: "3. Observe & Learn", desc: "Hackers spend hours exploiting useless decoy traps while CyberShield records their tools, fingerprints, and techniques." },
-        { title: "4. Defend", desc: "The system unmasks real IP/MAC addresses, extracts threat intelligence, and executes automated kernel-level firewall drops." }
+        { title: "2. Deceive", desc: "Instead of a 403 error, the system feeds attackers realistic fake customer databases, dummy APIs, and simulated logins." },
+        { title: "3. Observe & Defend", desc: "Hackers spend hours exploiting decoy traps while CyberShield extracts threat intelligence and executes automated kernel-level drops." }
       ]
     },
     {
@@ -74,10 +71,10 @@ export const PresentationDeck: React.FC = () => {
       title: "AI Attack Prediction & Kill-Chain Foresight",
       subtitle: "Anticipating the adversary's next 3 steps using Machine Learning & Markov Models",
       bgImage: "/slides/slide4.jpg",
-      learningTakeaway: "Markov Transition Chains model the hacker's kill-chain flow, allowing defenders to set traps BEFORE the hacker even executes the exploit.",
+      learningTakeaway: "Markov Transition Chains model the hacker's kill-chain flow, allowing defenders to set traps BEFORE the hacker executes the exploit.",
       points: [
-        { title: "Random Forest Classifier", desc: "Categorizes payloads in sub-2ms into: Reconnaissance, Brute Force, Web Injection (SQLi/XSS), Privilege Escalation, and Exfiltration." },
-        { title: "Markov Kill-Chain Engine", desc: "Maps MITRE ATT&CK progression. Example: Recon Scan → 48% chance of SQLi → CyberShield pre-loads decoy database traps." },
+        { title: "Random Forest Classifier", desc: "Categorizes payloads in sub-2ms into: Reconnaissance, Brute Force, Web Injection, Privilege Escalation, and Exfiltration." },
+        { title: "Markov Kill-Chain Engine", desc: "Maps MITRE ATT&CK progression: e.g., Recon scan triggers 48% probability of SQL Injection, pre-loading decoy DB traps." },
         { title: "Dynamic Risk Scoring (0–100)", desc: "Evaluates payload entropy, signature confidence, and reputation score to assign Low, Medium, High, or Critical threat tiers." }
       ]
     },
@@ -104,8 +101,7 @@ export const PresentationDeck: React.FC = () => {
       points: [
         { title: "VPN & Proxy Detection", desc: "Identifies commercial VPN tunnels (Nord, Mullvad, M247) and Tor relays by analyzing TCP TTL, MTU sizes, and ASN databases." },
         { title: "WebRTC LAN IP Leak", desc: "Extracts the attacker's real internal private subnet IP (e.g. 192.168.1.54) leaked through browser STUN candidate reflex exchange." },
-        { title: "Layer-2 MAC & Real Port Tracking", desc: "Resolves hardware MAC addresses via ARP cache in lab/intranet setups and tracks the exact source ephemeral socket port (e.g. 53500)." },
-        { title: "Global GPS Threat Radar", desc: "Resolves Latitude/Longitude coordinates, City, Country, and displays distance in km with 1-click Google Satellite Maps links." }
+        { title: "Layer-2 MAC & Real Port Tracking", desc: "Resolves hardware MAC addresses via ARP cache in lab setups, and tracks the exact source ephemeral socket port (e.g. 53500) and GPS location." }
       ]
     },
     {
@@ -142,11 +138,9 @@ export const PresentationDeck: React.FC = () => {
       bgImage: "/slides/slide9.jpg",
       learningTakeaway: "Simulation testing validates that AI classifiers, honeypots, and firewalls work in harmony under realistic cyber combat conditions.",
       points: [
-        { title: "1. Reconnaissance Scan", desc: "Simulates Nmap/Nikto vulnerability probing on actuator and health endpoints." },
-        { title: "2. SSH Brute Force", desc: "Launches dictionary password attacks on decoy port 2222 with infinite delay tarpits." },
-        { title: "3. SQL Database Injection", desc: "Executes UNION SELECT exploits; CyberShield serves watermarked synthetic records." },
-        { title: "4. Canary Token Exfiltration", desc: "Adversary steals fake .env keys; CyberShield traces the token query and triggers auto-drop." },
-        { title: "5. VPN-Cloaked Infiltration", desc: "Tests WebRTC de-anonymization, real port discovery, and physical GPS coordinate lookup." }
+        { title: "Multi-Vector Attack Suite", desc: "1-Click simulation of Reconnaissance Scans, SSH Brute Force on port 2222, SQL Injection, and Canary Exfiltration." },
+        { title: "VPN Cloaking Test", desc: "Validates WebRTC LAN IP de-cloaking, real ephemeral port discovery, and physical GPS coordinate mapping." },
+        { title: "Real-Time Verification", desc: "Proves that predictive models, honeypot traps, and auto-drop firewall rules work in harmony under realistic cyber conditions." }
       ]
     },
     {
@@ -157,8 +151,8 @@ export const PresentationDeck: React.FC = () => {
       bgImage: "/slides/slide10.jpg",
       learningTakeaway: "Deception technology combined with AI prediction represents the next frontier in proactive cyber resilience.",
       points: [
-        { title: "Key Architectural Takeaway", desc: "CyberShield flips the defender's dilemma: defenders no longer need to be right 100% of the time, because attackers are trapped in illusions." },
-        { title: "Dual Utility", desc: "Serves as an autonomous perimeter defense mesh for enterprises, and as a safe digital forensic sandbox for training cybersecurity practitioners." },
+        { title: "Key Architectural Takeaway", desc: "CyberShield turns the defender's dilemma upside down: defenders no longer need to be right 100% of the time, because attackers are trapped in illusions." },
+        { title: "Dual Purpose Utility", desc: "Serves as an autonomous perimeter defense mesh for enterprises, and as a safe digital forensic sandbox for cybersecurity education." },
         { title: "Full Technology Stack", desc: "Python FastAPI, Scikit-Learn, PyTorch, React, Tailwind CSS, WebSockets, and GPS Geolocation Engine." }
       ]
     }
@@ -193,7 +187,7 @@ export const PresentationDeck: React.FC = () => {
             <h2 className="text-lg font-bold text-white flex items-center space-x-2">
               <span>CYBERSHIELD PRESENTATION SLIDES</span>
               <span className="text-[10px] px-2 py-0.5 rounded bg-cyan-950 text-cyan-400 border border-cyan-500/30 font-mono">
-                10 SLIDES • 16:9 HD
+                10 SLIDES • CENTER ALIGNED • 16:9 HD
               </span>
             </h2>
             <p className="text-xs text-slate-400 font-mono">
@@ -203,17 +197,15 @@ export const PresentationDeck: React.FC = () => {
         </div>
 
         <div className="flex items-center space-x-2">
-          {/* Download PPTX Button */}
           <a
             href="/CyberShield_Presentation.pptx"
             download="CyberShield_Presentation.pptx"
             className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-semibold shadow-md shadow-emerald-500/20 border border-emerald-400/30 transition"
           >
             <Download className="w-3.5 h-3.5" />
-            <span>Download .PPTX File</span>
+            <span>Download Centered .PPTX File</span>
           </a>
 
-          {/* Fullscreen Toggle */}
           <button
             onClick={() => setFullscreen(!fullscreen)}
             className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition"
@@ -224,8 +216,8 @@ export const PresentationDeck: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Slide Viewer Canvas */}
-      <div className="relative w-full aspect-video max-h-[720px] rounded-2xl overflow-hidden border border-cyber-border shadow-2xl group select-none">
+      {/* Main Centered Slide Viewer Canvas */}
+      <div className="relative w-full aspect-video max-h-[720px] rounded-2xl overflow-hidden border border-cyber-border shadow-2xl group select-none flex items-center justify-center">
         {/* Full-Bleed Background Image */}
         <img
           src={slide.bgImage}
@@ -234,56 +226,55 @@ export const PresentationDeck: React.FC = () => {
         />
 
         {/* Dark Vignette Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#070b14]/95 via-[#070b14]/70 to-[#070b14]/40 backdrop-blur-[2px]"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#070b14]/90 via-[#070b14]/65 to-[#070b14]/50 backdrop-blur-[2px]"></div>
 
-        {/* Slide Content Overlay Box */}
-        <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-between z-10">
-          {/* Slide Header */}
+        {/* Centered Frosted Glass Content Box */}
+        <div className="relative z-10 w-[92%] max-w-5xl p-6 md:p-10 rounded-2xl bg-[#060a13]/85 backdrop-blur-md border border-cyan-500/40 shadow-2xl text-center flex flex-col justify-between space-y-4 my-auto">
+          {/* Centered Badge & Counter */}
+          <div className="flex items-center justify-center space-x-3">
+            <span className="text-[11px] font-mono font-bold tracking-wider px-3 py-0.5 rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-500/40 uppercase">
+              {slide.badge}
+            </span>
+            <span className="text-[11px] font-mono text-slate-400 font-bold bg-black/60 px-2.5 py-0.5 rounded-full border border-slate-800">
+              SLIDE {slide.num} OF {slides.length}
+            </span>
+          </div>
+
+          {/* Centered Title & Subtitle */}
           <div>
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-mono font-bold tracking-wider px-3 py-1 rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-500/40 uppercase">
-                {slide.badge}
-              </span>
-              <span className="text-xs font-mono text-slate-400 font-bold bg-black/60 px-3 py-1 rounded-full border border-slate-800">
-                SLIDE {slide.num} OF {slides.length}
-              </span>
-            </div>
-
-            <h1 className="text-2xl md:text-4xl font-extrabold text-white tracking-tight leading-tight mt-2 drop-shadow-md">
+            <h1 className="text-2xl md:text-4xl font-extrabold text-white tracking-tight leading-tight drop-shadow-md">
               {slide.title}
             </h1>
-            <p className="text-sm md:text-base text-blue-200/90 font-medium mt-1 drop-shadow">
+            <p className="text-xs md:text-sm text-blue-200/90 font-medium mt-1 drop-shadow max-w-2xl mx-auto">
               {slide.subtitle}
             </p>
           </div>
 
-          {/* Main Key Points Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-auto">
+          {/* Centered 3 Points Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-left">
             {slide.points.map((pt, idx) => (
               <div
                 key={idx}
-                className="p-4 rounded-xl bg-[#090e1c]/85 backdrop-blur-md border border-slate-700/60 hover:border-cyan-400/60 transition shadow-lg space-y-1.5"
+                className="p-3.5 rounded-xl bg-[#0a0f1e]/90 border border-slate-700/60 hover:border-cyan-400/60 transition shadow-lg text-center flex flex-col justify-center"
               >
-                <div className="flex items-center space-x-2 text-cyan-300 font-bold text-sm">
-                  <ArrowRight className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                <div className="text-cyan-300 font-bold text-xs mb-1 flex items-center justify-center space-x-1.5">
+                  <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
                   <span>{pt.title}</span>
                 </div>
-                <p className="text-xs text-slate-200 leading-relaxed font-sans">
+                <p className="text-[11px] text-slate-200 leading-relaxed font-sans">
                   {pt.desc}
                 </p>
               </div>
             ))}
           </div>
 
-          {/* Knowledge Gain / Key Learning Takeaway Footer */}
-          <div className="p-3.5 rounded-xl bg-gradient-to-r from-blue-950/90 via-indigo-950/90 to-cyan-950/90 backdrop-blur-md border border-cyan-500/40 flex items-start space-x-3 text-xs text-cyan-200">
-            <Lightbulb className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5 animate-pulse" />
-            <div>
-              <span className="font-bold text-white uppercase tracking-wider font-mono mr-1.5">
-                Key Cybersecurity Takeaway:
-              </span>
-              <span className="text-slate-200">{slide.learningTakeaway}</span>
-            </div>
+          {/* Centered Key Takeaway Banner */}
+          <div className="p-2.5 rounded-xl bg-gradient-to-r from-blue-950/90 via-indigo-950/90 to-cyan-950/90 border border-cyan-500/40 text-xs text-cyan-200 flex items-center justify-center space-x-2 text-center">
+            <Lightbulb className="w-4 h-4 text-amber-400 flex-shrink-0 animate-pulse" />
+            <span className="text-slate-200 text-[11px]">
+              <strong className="text-yellow-300 mr-1">Key Takeaway:</strong>
+              {slide.learningTakeaway}
+            </span>
           </div>
         </div>
 
